@@ -2,9 +2,29 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { createBrowserRouter, RouterProvider } from 'react-router'
 import './index.scss';
+import AboutPage from './pages/AboutPage/AboutPage'
+import LoginPage from './pages/LoginPage/LoginPage'
 
 const queryClient = new QueryClient()
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <App />,
+    errorElement: <h1>404 Not Found</h1>,
+    children: [
+      {
+        path: '',
+        element: <AboutPage />,
+      },
+      {
+        path: 'login',
+        element: <LoginPage />,
+      },
+    ]
+  },
+])
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -12,7 +32,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
-      <App />
+      <RouterProvider router={router} />
     </QueryClientProvider>
   </React.StrictMode>
 );

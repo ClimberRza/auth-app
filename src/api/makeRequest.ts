@@ -19,7 +19,7 @@ export interface ISuccessResponse<TData> {
 }
 
 
-export async function makeRequest<T>(method: TMethod, additionalUrl: TUrl): 
+export async function makeRequest<T>(method: TMethod, additionalUrl: TUrl, body?: unknown): 
 Promise<ISuccessResponse<T> | IErrResponse> {
   try {
     let data: T
@@ -28,7 +28,7 @@ Promise<ISuccessResponse<T> | IErrResponse> {
       data = response.data as T
     }
     if (method === 'post') {
-      // data = (await axios.post(BASE_URL + 'info')).data
+      data = (await axios.post(BASE_URL + additionalUrl, body)).data
     }
     if (method === 'put') {
       // data = (await axios.put(BASE_URL + 'info')).data
@@ -59,5 +59,3 @@ Promise<ISuccessResponse<T> | IErrResponse> {
     })
   }
 }
-
-module.exports = makeRequest

@@ -1,12 +1,11 @@
-import React, { MouseEventHandler } from 'react';
+import React from 'react';
 import classes from './MyButton.module.scss'
 
 interface Props {
   text: string
-  whereTo?: string
 }
 
-const MyButton: React.FC<Props> = ({text, whereTo}) => {
+const MyButton: React.FC<Props> = ({text}) => {
   return (
     <button 
       className={classes.myBtn}
