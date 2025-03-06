@@ -8,5 +8,6 @@
     "node": true,
     "jest/globals": true
   },
-  "rules": {}
+  "rules": {},
+  "plugins": ["jest"]
 }

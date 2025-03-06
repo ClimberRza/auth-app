@@ -1,6 +1,7 @@
 import React from 'react';
 import { getCompanyInformation } from '../../api/getCompanyInfo/getCompanyInformation'
 import { useQuery } from '@tanstack/react-query'
+import Error from '../../components/shared/error/Error'
 
 const AboutPage: React.FC = () => {
   const {data: response, isLoading, isError} = useQuery({
@@ -13,7 +14,7 @@ const AboutPage: React.FC = () => {
   }
 
   if (isError || !response || !response.success) {
-    return <h1>Error occured!</h1>
+    return <Error />
   }
   
   return (
