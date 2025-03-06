@@ -19,15 +19,26 @@ export interface ISuccessResponse<TData> {
 }
 
 
-export async function makeRequest<T>(method: TMethod, additionalUrl: TUrl, body?: unknown): 
+export async function makeRequest<T>(
+  method: TMethod, 
+  additionalUrl: TUrl, 
+  body?: unknown,
+  searchParams?: Object
+): 
 Promise<ISuccessResponse<T> | IErrResponse> {
   try {
     let data: T
     if (method === 'get') {
-      const response = await axios.get<T>(BASE_URL + additionalUrl)
+      const response = await axios.get<T>(
+        BASE_URL + additionalUrl,
+        { params: searchParams }
+      )
       data = response.data as T
     }
     if (method === 'post') {
+      if (!body) {
+        throw new Error('Nothing to post')
+      }
       data = (await axios.post(BASE_URL + additionalUrl, body)).data
     }
     if (method === 'put') {

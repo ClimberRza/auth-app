@@ -1,22 +1,20 @@
 import React, { MouseEventHandler } from 'react';
-import classes from './MyButton.module.scss'
+import classes from './HeaderButton.module.scss'
 
 interface Props {
   text: string
   onClick?: MouseEventHandler<HTMLButtonElement>,
-  style?: Object
 }
 
-const MyButton: React.FC<Props> = ({ text, onClick, style }) => {
+const HeaderButton: React.FC<Props> = ({ text, onClick }) => {
   return (
-    <button
-      className={classes.btn}
+    <button 
+      className={classes.myBtn}
       onClick={onClick}
-      style={style}
     >
       {text}
     </button>
   );
 };
 
-export default MyButton;
+export default HeaderButton;

@@ -1,0 +1,16 @@
+.mainContent {
+  display: flex;
+  .avatar {
+    width: 7rem;
+    height: 7rem;
+    border-radius: 50%;
+  }
+  .userProfile {
+    display: flex;
+    flex-direction: column;
+    margin-left: 2rem;
+    h1 {
+      margin: 0;
+    }
+  }
+}

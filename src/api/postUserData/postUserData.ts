@@ -6,7 +6,7 @@ interface IUserData {
   password: string
 }
 
-interface IUserDataInDB extends IUserData {
+export interface IUserDataInDB extends IUserData {
   id: string
   token: string
 }
@@ -17,7 +17,7 @@ interface IUserToken {
 
 export const postUserData = async (userData: IUserData):
   Promise<ISuccessResponse<IUserToken> | IErrResponse> => {
-    const allProfilesResponse = await makeRequest<IUserDataInDB[]>('get', '/profile')
+    const allProfilesResponse = await makeRequest<IUserDataInDB[]>('get', '/profiles')
 
     if (!allProfilesResponse.success) {
       return allProfilesResponse
@@ -47,7 +47,7 @@ export const postUserData = async (userData: IUserData):
     }
 
     // Post request
-    const response = await makeRequest<IUserDataInDB>('post', '/profile', userDataWithToken)
+    const response = await makeRequest<IUserDataInDB>('post', '/profiles', userDataWithToken)
     if (!response.success) {
       return response
     }

@@ -1,15 +1,18 @@
-import React, { MouseEventHandler } from 'react';
+import React, { MouseEventHandler, useContext } from 'react';
 import MyInput from '../../components/ui/MyInput/MyInput'
 import classes from './LoginPage.module.scss'
 import { postUserData } from '../../api/postUserData/postUserData'
 import Error from '../../components/shared/error/Error'
 import { useNavigate } from 'react-router'
+import MyButton from '../../components/ui/MyButton/MyButton'
+import { appContext } from '../../App'
 
 const LoginPage: React.FC = () => {
   const [email, setEmail] = React.useState('')
   const [password, setPassword] = React.useState('')
   const [isError, setIsError] = React.useState(false)
   const navigate = useNavigate()
+  const { setIsLoggedIn } = useContext(appContext)
 
   const handleSubmit: MouseEventHandler<HTMLButtonElement> = async (e) => {
     e.preventDefault()
@@ -17,9 +20,11 @@ const LoginPage: React.FC = () => {
     if (!response.success) {
       setIsError(true)
     } else {
-      sessionStorage.setItem('userToken', response.data.token)
+      const token = response.data.token
+      sessionStorage.setItem('userToken', token)
       // Navigate to User Screen
-      // navigate('')
+      navigate(`/profile?token=${token}`)
+      setIsLoggedIn(true)
     }
   }
 
@@ -43,12 +48,10 @@ const LoginPage: React.FC = () => {
           inputValue={password}
           changeValue={setPassword}
         />
-        <button 
-          className={classes.btn}
+        <MyButton 
           onClick={handleSubmit}
-        >
-          Submit
-        </button>
+          text='Submit'
+        />
       </form>
     </div>
   );
