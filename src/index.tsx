@@ -6,6 +6,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router'
 import './index.scss';
 import AboutPage from './pages/AboutPage/AboutPage'
 import LoginPage from './pages/LoginPage/LoginPage'
+import ProfilePage from './pages/ProfilePage/ProfilePage'
 
 const queryClient = new QueryClient()
 const router = createBrowserRouter([
@@ -19,9 +20,17 @@ const router = createBrowserRouter([
         element: <AboutPage />,
       },
       {
+        path: '/info',
+        element: <AboutPage />,
+      },
+      {
         path: 'login',
         element: <LoginPage />,
       },
+      {
+        path: 'profile',
+        element: <ProfilePage />
+      }
     ]
   },
 ])
