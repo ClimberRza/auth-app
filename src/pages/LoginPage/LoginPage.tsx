@@ -2,14 +2,29 @@ import React, { MouseEventHandler } from 'react';
 import MyInput from '../../components/ui/MyInput/MyInput'
 import classes from './LoginPage.module.scss'
 import { postUserData } from '../../api/postUserData/postUserData'
+import Error from '../../components/shared/error/Error'
+import { useNavigate } from 'react-router'
 
 const LoginPage: React.FC = () => {
   const [email, setEmail] = React.useState('')
   const [password, setPassword] = React.useState('')
+  const [isError, setIsError] = React.useState(false)
+  const navigate = useNavigate()
 
   const handleSubmit: MouseEventHandler<HTMLButtonElement> = async (e) => {
     e.preventDefault()
     const response = await postUserData({ email, password })
+    if (!response.success) {
+      setIsError(true)
+    } else {
+      sessionStorage.setItem('userToken', response.data.token)
+      // Navigate to User Screen
+      // navigate('')
+    }
+  }
+
+  if (isError) {
+    return <Error />
   }
 
   return (

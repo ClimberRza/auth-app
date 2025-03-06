@@ -4,7 +4,6 @@ import { Outlet } from 'react-router'
 import Header from './components/shared/header/Header'
 
 function App() {
-
   return (
     <div className="App">
       <Header />

@@ -22,18 +22,31 @@ export const postUserData = async (userData: IUserData):
     if (!allProfilesResponse.success) {
       return allProfilesResponse
     }
+    // If db already contains such user, we dont post his profile in db
+    const sameUserInDb = allProfilesResponse.data
+    .find(user => user.email === userData.email && user.password === userData.password)
+    if (sameUserInDb) {
+        return new Promise(resolve => {
+          resolve({
+            success: true,
+            data: {
+              token: sameUserInDb.token
+            }
+          })
+        })
+    }
 
     let userToken = generateToken()
     // Guarantee token uniqueness
     while (allProfilesResponse.data.find(user => user.token === userToken)) {
       userToken = generateToken()
     }
-
     const userDataWithToken = {
       ...userData,
       token: userToken
     }
 
+    // Post request
     const response = await makeRequest<IUserDataInDB>('post', '/profile', userDataWithToken)
     if (!response.success) {
       return response
