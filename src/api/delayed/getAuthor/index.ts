@@ -36,7 +36,7 @@ export const getAuthor = async (controller: AbortController):
     await new Promise((resolve) => {
       setTimeout(() => {
         resolve('')
-      }, 5000)
+      }, 1000)
     })
     
     return result

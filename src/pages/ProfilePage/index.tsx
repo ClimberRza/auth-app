@@ -15,61 +15,53 @@ const ProfilePage: React.FC = () => {
 
   const [isQuoteLoading, setIsQuoteLoading] = React.useState(false)
   const [isAuthorLoading, setIsAuthorLoading] = React.useState(false)
-  const authorRef = React.useRef('')
-  const quoteRef = React.useRef('')
   const [author, setAuthor] = React.useState('')
   const [quote, setQuote] = React.useState('')
   const [isErrorAutorQuote, setIsErrorAutorQuote] = React.useState(false)
   const [isModalOpen, setIsModalOpen] = React.useState(false)
-  const controllerRef = React.useRef(new AbortController())
-  const controller = controllerRef.current
+  const controllersStackRef = React.useRef<AbortController[]>([])
 
   const requestAuthorQuote = async () => {
-    controllerRef.current = new AbortController()
+    const controller = new AbortController
+    controller.signal.onabort = () => {
+      controllersStackRef.current.shift()
+    }
+
+    controllersStackRef.current.push(controller)
     setIsModalOpen(true)
     setIsAuthorLoading(true)
     setIsQuoteLoading(true)
     
     const authorResponse = await getAuthor(controller)
-    if (authorResponse.success && !controller.signal.aborted) {
-      authorRef.current = authorResponse.data.name
-    }
     
     setIsAuthorLoading(false)
     if (!authorResponse.success) {
       if (!controller.signal.aborted) {
         setIsErrorAutorQuote(true)
+        setIsModalOpen(false)
       }
-      setIsModalOpen(false)
       return
     }
 
     const quoteResponse = await getQuote(authorResponse.data.authorId, controller)
-    if (quoteResponse.success && !controller.signal.aborted) {
-      quoteRef.current = quoteResponse.data.quote
-    }
 
     setIsQuoteLoading(false)
     if (!quoteResponse.success) {
       if (!controller.signal.aborted) {
         setIsErrorAutorQuote(true)
+        setIsModalOpen(false)
       }
-      setIsModalOpen(false)
       return
     }
 
-    setIsModalOpen(false)
-  }
-
-  React.useEffect(() => {
-    if (!controller.signal.aborted && !isAuthorLoading && !isQuoteLoading) {
-      setAuthor(authorRef.current)
-      setQuote(quoteRef.current)
+    if (!controller.signal.aborted) {
+      setQuote(quoteResponse.data.quote)
+      setAuthor(authorResponse.data.name)
+      setIsModalOpen(false)
     }
-    // if (controller.signal.aborted) {
-    //   controllerRef.current = new AbortController()
-    // }
-  }, [controller.signal.aborted, isAuthorLoading, isQuoteLoading])
+
+    controllersStackRef.current.shift()
+  }
 
   const queryPlacehoder = React.useMemo(() => {
     if (author && quote) {
@@ -113,9 +105,7 @@ const ProfilePage: React.FC = () => {
           <h1>Welcome, {response.data.fullname}!</h1>
           <MyButton 
             text='Update'
-            onClick={() => {
-              requestAuthorQuote()
-            }}
+            onClick={() => requestAuthorQuote()}
           />
         </div>
       </div>
@@ -125,7 +115,9 @@ const ProfilePage: React.FC = () => {
           setOpen={setIsModalOpen}
           isQuoteLoading={isQuoteLoading}
           isAuthorLoading={isAuthorLoading}
-          controller={controller}
+          setIsQuoteLoading={setIsQuoteLoading}
+          setIsAuthorLoading={setIsAuthorLoading}
+          controllerStack={controllersStackRef.current}
         />
     </div>
   );
