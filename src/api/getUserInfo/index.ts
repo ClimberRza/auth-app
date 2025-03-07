@@ -1,7 +1,7 @@
 import { IErrResponse, ISuccessResponse, makeRequest } from '../makeRequest'
-import { IUserDataInDB } from '../postUserData/postUserData'
+import { IUserDataInDB } from '../postUserData'
 
-interface IUserProfileData {
+export interface IUserProfileData {
   fullname: string
   email: string
 }
@@ -14,9 +14,11 @@ export const getUserInfo = async (token: string):
       null,
       { token }
     )
+
     if (!response.success) {
       return response
     }
+
     const foundUser = response.data[0]
     const result: ISuccessResponse<IUserProfileData> = {
       success: true,
@@ -25,7 +27,6 @@ export const getUserInfo = async (token: string):
         email: foundUser.email
       }
     }
-    return new Promise(resolve => {
-      resolve(result)
-    })
+    
+    return result
 }
