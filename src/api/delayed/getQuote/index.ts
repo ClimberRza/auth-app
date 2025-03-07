@@ -37,7 +37,7 @@ export const getQuote = async (authorId: number, controller: AbortController):
     await new Promise((resolve) => {
       setTimeout(() => {
         resolve('')
-      }, 1000)
+      }, 5000)
     })
     
     return result
