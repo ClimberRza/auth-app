@@ -34,9 +34,6 @@ Promise<ISuccessResponse<T> | IErrResponse> {
     let data: T
 
     if (method === 'get') {
-      if (options?.signal) {
-        // debugger
-      }
       const response = await axios.get<T>(
         BASE_URL + additionalUrl,
         { 
@@ -67,7 +64,6 @@ Promise<ISuccessResponse<T> | IErrResponse> {
     })
 
   } catch (error: any) {
-    // debugger
     console.log(error)
   
     const response: IErrResponse = {
