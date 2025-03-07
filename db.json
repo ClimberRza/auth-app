@@ -2,58 +2,107 @@
   "info": "Some information about the company.",
   "profiles": [
     {
-      "id": "857e",
-      "email": "12",
-      "password": "12",
-      "token": "MKas3g5H1ngnW2qjrlZlwpEeJmtsvpZ4"
+      "id": "5fd7",
+      "email": "134",
+      "password": "13",
+      "token": "AgRLjheMwb63xtltUwGEEGS8Rr5xva2p"
     },
     {
-      "id": "f0d2",
-      "email": "14789",
-      "password": "312",
-      "token": "e0vKNMSjjfgoYY0TADGJr46PQpnURewt"
+      "id": "1002",
+      "email": "123",
+      "password": "3123",
+      "token": "ttxCDfFpVJDK5cqF9mKxMgjYGPdZcluN"
     },
     {
-      "id": "7b1a",
-      "email": "13",
-      "password": "123",
-      "token": "9XqNvcE6Li3c6y1gVdK7onTJjlFFqTHK"
-    },
-    {
-      "id": "e195",
-      "email": "f",
-      "password": "fs",
-      "token": "GmdQr8qOZnEcBgTlCL4ldpWfaOYgq7l5"
-    },
-    {
-      "id": "6eca",
+      "id": "b186",
       "email": "123",
       "password": "123",
-      "token": "ysgHM3WLwnUj8kgXENKGYUDs6xOKmrcP"
+      "token": "LIz9qXjNtEuXxzainExZ3Q9qr44wpArE"
     },
     {
-      "id": "1185",
-      "email": "132",
-      "password": "3",
-      "token": "7iSLh0TTQ8fnGrHZLMKFsbJ8y6dApq4y"
+      "id": "a2ca",
+      "email": "2324",
+      "password": "234",
+      "token": "MZlpAYukDaNKEVfLRNXj7wSwNBc9zFoB"
     },
     {
-      "id": "bc66",
-      "email": "",
-      "password": "",
-      "token": "s6Gyh8X1XqC5ra69OgDrv7jcgCFHvDQ8"
+      "id": "0eff",
+      "email": "fa",
+      "password": "fa",
+      "token": "FEc6pvm5petYj4RWYgnudNcW4VSSlp3M"
+    }
+  ],
+  "authors": [
+    {
+      "authorId": 1,
+      "name": "Walt Disney",
+      "id": "c425"
     },
     {
-      "id": "0e0f",
-      "email": "sdaf",
-      "password": "adsf",
-      "token": "nk6Z5vnXU2ArkCPKIzglzhqPyWGHJqr1"
+      "authorId": 2,
+      "name": "Mark Twain",
+      "id": "2180"
     },
     {
-      "id": "1723",
-      "email": "fsaf",
-      "password": "adsf",
-      "token": "se82YoGnbmeZNeS4Be14lt1zM5ooBExh"
+      "authorId": 3,
+      "name": "Albert Einstein",
+      "id": "0eb2"
+    }
+  ],
+  "quotes": [
+    {
+      "quoteId": 1,
+      "authorId": 1,
+      "quote": "The more you like yourself, the less you are like anyone else, which makes you unique.",
+      "id": "cd7a"
+    },
+    {
+      "quoteId": 2,
+      "authorId": 1,
+      "quote": "Disneyland is a work of love. We didn't go into Disneyland just with the idea of making money.",
+      "id": "41d1"
+    },
+    {
+      "quoteId": 3,
+      "authorId": 1,
+      "quote": "I always like to look on the optimistic side of life, but I am realistic enough to know that life is a complex matter.",
+      "id": "2be1"
+    },
+    {
+      "quoteId": 4,
+      "authorId": 2,
+      "quote": "The secret of getting ahead is getting started.",
+      "id": "c832"
+    },
+    {
+      "quoteId": 5,
+      "authorId": 2,
+      "quote": "Part of the secret of a success in life is to eat what you like and let the food fight it out inside.",
+      "id": "fff3"
+    },
+    {
+      "quoteId": 6,
+      "authorId": 2,
+      "quote": "You can't depend on your eyes when your imagination is out of focus.",
+      "id": "6bff"
+    },
+    {
+      "quoteId": 7,
+      "authorId": 3,
+      "quote": "Look deep into nature, and then you will understand everything better.",
+      "id": "37c5"
+    },
+    {
+      "quoteId": 8,
+      "authorId": 3,
+      "quote": "Learn from yesterday, live for today, hope for tomorrow. The important thing is not to stop questioning.",
+      "id": "0a25"
+    },
+    {
+      "quoteId": 9,
+      "authorId": 3,
+      "quote": "The only source of knowledge is experience.",
+      "id": "1d0b"
     }
   ]
 }

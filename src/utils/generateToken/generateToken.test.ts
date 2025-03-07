@@ -1,4 +1,4 @@
-import { generateToken } from './generateToken';
+import { generateToken } from '.';
 
 describe('generateToken', () => {
   test('Is defined', () => {

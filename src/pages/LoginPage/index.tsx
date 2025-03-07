@@ -1,10 +1,10 @@
 import React, { MouseEventHandler, useContext } from 'react';
-import MyInput from '../../components/ui/MyInput/MyInput'
+import MyInput from '../../components/ui/MyInput'
 import classes from './LoginPage.module.scss'
-import { postUserData } from '../../api/postUserData/postUserData'
-import Error from '../../components/shared/error/Error'
+import { postUserData } from '../../api/postUserData'
+import Error from '../../components/shared/error'
 import { useNavigate } from 'react-router'
-import MyButton from '../../components/ui/MyButton/MyButton'
+import MyButton from '../../components/ui/MyButton'
 import { appContext } from '../../App'
 
 const LoginPage: React.FC = () => {

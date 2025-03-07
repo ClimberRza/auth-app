@@ -1,13 +1,15 @@
 import React from 'react';
-import { Link } from 'react-router'
-import HeaderButton from '../../ui/HeaderButton/HeaderButton';
+import { Link, useNavigate } from 'react-router'
+import HeaderButton from '../../ui/HeaderButton';
 import classes from './Header.module.scss'
 import { appContext } from '../../../App'
 
 const Header: React.FC = () => {
   const { isLoggedIn, setIsLoggedIn } = React.useContext(appContext)
 
-
+  const handleLoguotClick = () => {
+    setIsLoggedIn(false)
+  }
 
   return (
     <header className={classes.header}>
@@ -18,13 +20,10 @@ const Header: React.FC = () => {
         <HeaderButton text='Sign in' />
       </Link>
       {isLoggedIn && (
-        <Link to='/info'>
+        <Link to='/logout'>
           <HeaderButton 
             text='Sign out'
-            onClick={() => {
-              setIsLoggedIn(false)
-              sessionStorage.removeItem('userToken')
-            }}
+            onClick={handleLoguotClick}
           />
         </Link>
       )}

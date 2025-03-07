@@ -1,7 +1,7 @@
 import React from 'react';
-import { getCompanyInformation } from '../../api/getCompanyInfo/getCompanyInformation'
+import { getCompanyInformation } from '../../api/getCompanyInfo'
 import { useQuery } from '@tanstack/react-query'
-import Error from '../../components/shared/error/Error'
+import Error from '../../components/shared/error'
 
 const AboutPage: React.FC = () => {
   const {data: response, isLoading, isError} = useQuery({

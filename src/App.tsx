@@ -1,7 +1,7 @@
 import React, { createContext } from 'react';
 import './App.scss';
-import { Outlet } from 'react-router'
-import Header from './components/shared/header/Header'
+import { Outlet, useNavigate } from 'react-router'
+import Header from './components/shared/header'
 
 interface IAppContext {
   isLoggedIn: boolean
@@ -15,6 +15,11 @@ export const appContext = createContext<IAppContext>({
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = React.useState(false)
+  const navigate = useNavigate()
+
+  React.useEffect(() => {
+    navigate('/')
+  }, [])
 
   return (
     <appContext.Provider value={{

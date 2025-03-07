@@ -1,4 +1,4 @@
-import { generateToken } from '../../utils/generateToken/generateToken'
+import { generateToken } from '../../utils/generateToken'
 import { IErrResponse, ISuccessResponse, makeRequest } from '../makeRequest'
 
 interface IUserData {
@@ -22,6 +22,7 @@ export const postUserData = async (userData: IUserData):
     if (!allProfilesResponse.success) {
       return allProfilesResponse
     }
+    
     // If db already contains such user, we dont post his profile in db
     const sameUserInDb = allProfilesResponse.data
     .find(user => user.email === userData.email && user.password === userData.password)
@@ -59,7 +60,5 @@ export const postUserData = async (userData: IUserData):
       }
     }
 
-    return new Promise(resolve => {
-      resolve(result)
-    })
+    return result
 }
