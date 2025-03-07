@@ -7,14 +7,26 @@ interface Props {
   setOpen: React.Dispatch<React.SetStateAction<boolean>>
   isQuoteLoading: boolean
   isAuthorLoading: boolean
-  controller: AbortController
+  setIsQuoteLoading: React.Dispatch<React.SetStateAction<boolean>>
+  setIsAuthorLoading: React.Dispatch<React.SetStateAction<boolean>>
+  controllerStack: AbortController[]
 }
 
-const Modal: React.FC<Props> = ({ open, setOpen, isAuthorLoading, isQuoteLoading, controller }) => {
+const Modal: React.FC<Props> = ({ 
+  open,
+  setOpen,
+  isAuthorLoading,
+  isQuoteLoading,
+  setIsAuthorLoading,
+  setIsQuoteLoading,
+  controllerStack
+}) => {
   const resultClasses = [classes.backdrop]
 
   const handleCancelClick = () => {
-    controller.abort()
+    controllerStack[0].abort()
+    setIsAuthorLoading(false)
+    setIsQuoteLoading(false)
     setOpen(false)
   }
 
